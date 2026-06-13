@@ -1,0 +1,22 @@
+#ifndef COMENTARIO_H
+#define COMENTARIO_H
+
+#include <string>
+using namespace std;
+
+class Comentario {
+private:
+    int idComentario;
+    int likescom;
+
+    string texto;
+    string fecha;
+    string autor;
+
+public:
+    Comentario(int _idComentario, int _likes, string _texto, string _fecha, string _autor);
+    void mostrarComentario();
+    void darLike();
+};
+
+#endif
