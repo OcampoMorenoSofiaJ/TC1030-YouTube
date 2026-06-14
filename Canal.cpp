@@ -48,3 +48,8 @@ int Canal::getSuscriptores() const
 {
     return suscriptores;
 }
+
+void Canal::agregarSuscriptor()
+{
+    suscriptores++;
+}

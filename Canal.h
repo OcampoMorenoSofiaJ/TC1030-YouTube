@@ -22,6 +22,8 @@ public:
     void mostrarInfo() const;
     void mostrarVideos() const;
 
+    void agregarSuscriptor();
+
     int getIdCanal() const;
     string getNombre() const;
     int getSuscriptores() const;

@@ -1,4 +1,5 @@
 #include "Usuario.h"
+#include "Canal.h"
 
 using namespace std;
 #include <iostream>
@@ -35,5 +36,16 @@ bool Usuario::darLike(Likeable* likeable){
 }
 
 void Usuario::suscribirse(Canal* canal){
-    // Hereda de canal?
+    if (!canal) return;
+
+    for (Canal* c : suscripciones) {
+        if (c == canal) {
+            cout << "Ya estas suscrito al canal: " << canal->getNombre() << endl;
+            return;
+        }
+    }
+
+    suscripciones.push_back(canal);
+    canal->agregarSuscriptor();
+    cout << "Te suscribiste a: " << canal->getNombre() << endl;
 }

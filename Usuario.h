@@ -18,6 +18,7 @@ private:
     string email;
 
     vector <Video*> videosGustados;
+    vector<Canal*> suscripciones;
 
 public:
     Usuario(int _idUsuario, string _nombre, string _email);
