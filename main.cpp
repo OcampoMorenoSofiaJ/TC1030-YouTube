@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <limits>
 using namespace std;
 
 #include "Catalogo.h"
@@ -19,9 +18,9 @@ int main()
     catalogo.agregarUsuario(new Usuario(2, "Luis Torres", "luis@mail.com"));
     catalogo.agregarUsuario(new Usuario(3, "Mia Ramirez", "mia@mail.com"));
 
-    Canal *c1 = new Canal(1, "TechMex", "Canal de tecnologia", "Tecnologia", 120000);
-    Canal *c2 = new Canal(2, "CineClasico", "Peliculas antiguas", "Cine", 45000);
-    Canal *c3 = new Canal(3, "MusicaLatina", "Lo mejor del pop lat", "Musica", 320000);
+    Canal *c1 = new Canal(1, "TechMex", 120000);
+    Canal *c2 = new Canal(2, "CineClasico", 45000);
+    Canal *c3 = new Canal(3, "MusicaLatina", 320000);
     catalogo.agregarCanal(c1);
     catalogo.agregarCanal(c2);
     catalogo.agregarCanal(c3);
@@ -62,9 +61,9 @@ int main()
 
     while (opcion != 0)
     {
-        mostrarMenu();
+        catalogo.mostrarMenu();
         cin >> opcion;
-        limpiarBuffer();
+        catalogo.limpiarBuffer();
 
         if (opcion == 1)
         {
@@ -85,12 +84,12 @@ int main()
         {
 
             catalogo.mostrarVideos();
-            int iv = pedirIndice("Indice del video a comentar: ", catalogo.totalVideos());
+            int iv = catalogo.pedirIndice("Indice del video a comentar: ", catalogo.totalVideos());
             if (iv == -1)
                 continue;
 
             catalogo.mostrarUsuarios();
-            int iu = pedirIndice("Indice del usuario que comenta: ", catalogo.totalUsuarios());
+            int iu = catalogo.pedirIndice("Indice del usuario que comenta: ", catalogo.totalUsuarios());
             if (iu == -1)
                 continue;
 
@@ -106,7 +105,7 @@ int main()
         {
 
             catalogo.mostrarVideos();
-            int iv = pedirIndice("Indice del video: ", catalogo.totalVideos());
+            int iv = catalogo.pedirIndice("Indice del video: ", catalogo.totalVideos());
             if (iv == -1)
                 continue;
             catalogo.mostrarComentariosDeVideo(iv);
@@ -115,12 +114,12 @@ int main()
         {
 
             catalogo.mostrarUsuarios();
-            int iu = pedirIndice("Indice del usuario: ", catalogo.totalUsuarios());
+            int iu = catalogo.pedirIndice("Indice del usuario: ", catalogo.totalUsuarios());
             if (iu == -1)
                 continue;
 
             catalogo.mostrarCanales();
-            int ic = pedirIndice("Indice del canal: ", catalogo.totalCanales());
+            int ic = catalogo.pedirIndice("Indice del canal: ", catalogo.totalCanales());
             if (ic == -1)
                 continue;
 
@@ -130,10 +129,10 @@ int main()
         {
 
             catalogo.mostrarVideos();
-            int iv1 = pedirIndice("Indice del primer video: ", catalogo.totalVideos());
+            int iv1 = catalogo.pedirIndice("Indice del primer video: ", catalogo.totalVideos());
             if (iv1 == -1)
                 continue;
-            int iv2 = pedirIndice("Indice del segundo video: ", catalogo.totalVideos());
+            int iv2 = catalogo.pedirIndice("Indice del segundo video: ", catalogo.totalVideos());
             if (iv2 == -1)
                 continue;
 
@@ -143,7 +142,7 @@ int main()
         {
 
             catalogo.mostrarCanales();
-            int ic = pedirIndice("Indice del canal: ", catalogo.totalCanales());
+            int ic = catalogo.pedirIndice("Indice del canal: ", catalogo.totalCanales());
             if (ic == -1)
                 continue;
             catalogo.getCanal(ic)->mostrarVideos();
