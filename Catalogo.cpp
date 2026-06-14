@@ -218,19 +218,19 @@ int Catalogo::pedirIndice(const string &prompt, int maxExclusivo)
 
 void Catalogo::mostrarMenu()
 {
-    cout << "\n╔══════════════════════════════════════╗" << endl;
-    cout << "║         TC1030 - YouTube             ║" << endl;
-    cout << "╠══════════════════════════════════════╣" << endl;
-    cout << "║  1. Mostrar todos los videos         ║" << endl;
-    cout << "║  2. Mostrar todos los canales        ║" << endl;
-    cout << "║  3. Mostrar todas las peliculas      ║" << endl;
-    cout << "║  4. Agregar comentario a un video    ║" << endl;
-    cout << "║  5. Ver comentarios de un video      ║" << endl;
-    cout << "║  6. Suscribirse a un canal           ║" << endl;
-    cout << "║  7. Comparar popularidad de videos   ║" << endl;
-    cout << "║  8. Ver videos de un canal           ║" << endl;
-    cout << "║  9. Mostrar todo el catalogo         ║" << endl;
-    cout << "║  0. Salir                            ║" << endl;
-    cout << "╚══════════════════════════════════════╝" << endl;
+    cout << "\n|======================================|" << endl;
+    cout << "|         TC1030 - YouTube             |" << endl;
+    cout << "|======================================|" << endl;
+    cout << "|  1. Mostrar todos los videos         |" << endl;
+    cout << "|  2. Mostrar todos los canales        |" << endl;
+    cout << "|  3. Mostrar todas las peliculas      |" << endl;
+    cout << "|  4. Agregar comentario a un video    |" << endl;
+    cout << "|  5. Ver comentarios de un video      |" << endl;
+    cout << "|  6. Suscribirse a un canal           |" << endl;
+    cout << "|  7. Comparar popularidad de videos   |" << endl;
+    cout << "|  8. Ver videos de un canal           |" << endl;
+    cout << "|  9. Mostrar todo el catalogo         |" << endl;
+    cout << "|  0. Salir                            |" << endl;
+    cout << "|======================================|" << endl;
     cout << "Opcion: ";
 }
