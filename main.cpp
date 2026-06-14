@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdexcept>
 using namespace std;
 
 #include "Catalogo.h"
@@ -57,108 +58,119 @@ int main()
     catalogo.agregarVideo(sh1);
     c1->agregarVideo(sh1);
 
+    // Comentarios iniciales para cada video
+    catalogo.agregarComentarioAVideo(0, 0, "La mejor pelicula que he visto este ano.", "14/06/2026");
+    catalogo.agregarComentarioAVideo(1, 1, "Excelente explicacion de punteros.", "14/06/2026");
+    catalogo.agregarComentarioAVideo(2, 2, "Esta cancion es pegajosa.", "14/06/2026");
+    catalogo.agregarComentarioAVideo(3, 0, "Muy interesante el episodio sobre IA.", "14/06/2026");
+    catalogo.agregarComentarioAVideo(4, 1, "Este short es muy creativo.", "14/06/2026");
+
     int opcion = -1;
+    string opcionLinea;
 
     while (opcion != 0)
     {
         catalogo.mostrarMenu();
-        cin >> opcion;
-        catalogo.limpiarBuffer();
+        if (!getline(cin, opcionLinea))
+            break;
 
-        if (opcion == 1)
+        try
         {
-
-            catalogo.mostrarVideos();
+            opcion = stoi(opcionLinea);
         }
-        else if (opcion == 2)
+        catch (const invalid_argument &)
         {
-
-            catalogo.mostrarCanales();
+            cout << "Entrada invalida. Ingresa un numero." << endl;
+            continue;
         }
-        else if (opcion == 3)
+        catch (const out_of_range &)
         {
-
-            catalogo.mostrarPeliculas();
+            cout << "Entrada invalida. Numero demasiado grande." << endl;
+            continue;
         }
-        else if (opcion == 4)
+
+        try
         {
+            if (opcion == 1)
+            {
+                catalogo.mostrarVideos();
+            }
+            else if (opcion == 2)
+            {
+                catalogo.mostrarCanales();
+            }
+            else if (opcion == 3)
+            {
+                catalogo.mostrarPeliculas();
+            }
+            else if (opcion == 4)
+            {
+                catalogo.mostrarVideos();
+                int iv = catalogo.pedirIndice("Indice del video a comentar: ", catalogo.totalVideos());
+                catalogo.mostrarUsuarios();
+                int iu = catalogo.pedirIndice("Indice del usuario que comenta: ", catalogo.totalUsuarios());
 
-            catalogo.mostrarVideos();
-            int iv = catalogo.pedirIndice("Indice del video a comentar: ", catalogo.totalVideos());
-            if (iv == -1)
-                continue;
+                string texto, fecha;
+                cout << "Texto del comentario: ";
+                getline(cin, texto);
+                cout << "Fecha (dd/mm/aaaa): ";
+                getline(cin, fecha);
 
-            catalogo.mostrarUsuarios();
-            int iu = catalogo.pedirIndice("Indice del usuario que comenta: ", catalogo.totalUsuarios());
-            if (iu == -1)
-                continue;
-
-            string texto, fecha;
-            cout << "Texto del comentario: ";
-            getline(cin, texto);
-            cout << "Fecha (dd/mm/aaaa): ";
-            getline(cin, fecha);
-
-            catalogo.agregarComentarioAVideo(iv, iu, texto, fecha);
+                catalogo.agregarComentarioAVideo(iv, iu, texto, fecha);
+            }
+            else if (opcion == 5)
+            {
+                catalogo.mostrarVideos();
+                int iv = catalogo.pedirIndice("Indice del video: ", catalogo.totalVideos());
+                catalogo.mostrarComentariosDeVideo(iv);
+            }
+            else if (opcion == 6)
+            {
+                catalogo.mostrarUsuarios();
+                int iu = catalogo.pedirIndice("Indice del usuario: ", catalogo.totalUsuarios());
+                catalogo.mostrarCanales();
+                int ic = catalogo.pedirIndice("Indice del canal: ", catalogo.totalCanales());
+                catalogo.suscribirUsuarioACanal(iu, ic);
+            }
+            else if (opcion == 7)
+            {
+                catalogo.mostrarVideos();
+                int iv1 = catalogo.pedirIndice("Indice del primer video: ", catalogo.totalVideos());
+                int iv2 = catalogo.pedirIndice("Indice del segundo video: ", catalogo.totalVideos());
+                catalogo.compararPopularidad(iv1, iv2);
+            }
+            else if (opcion == 8)
+            {
+                catalogo.mostrarCanales();
+                int ic = catalogo.pedirIndice("Indice del canal: ", catalogo.totalCanales());
+                catalogo.getCanal(ic)->mostrarVideos();
+            }
+            else if (opcion == 9)
+            {
+                catalogo.mostrarVideos();
+                int iv = catalogo.pedirIndice("Indice del video: ", catalogo.totalVideos());
+                catalogo.mostrarComentariosDeVideo(iv);
+                int ic = catalogo.pedirIndice("Indice del comentario: ", (int)catalogo.getVideo(iv)->getComentarios().size());
+                catalogo.mostrarUsuarios();
+                int iu = catalogo.pedirIndice("Indice del usuario: ", catalogo.totalUsuarios());
+                catalogo.darLikeComentarioAVideo(iv, iu, ic);
+            }
+            else if (opcion == 10)
+            {
+                catalogo.mostrarTodo();
+            }
+            else if (opcion == 0)
+            {
+                cout << "Hasta luego!" << endl;
+            }
+            else
+            {
+                cout << "Opcion no valida. Intenta de nuevo." << endl;
+            }
         }
-        else if (opcion == 5)
+        catch (const exception &e)
         {
-
-            catalogo.mostrarVideos();
-            int iv = catalogo.pedirIndice("Indice del video: ", catalogo.totalVideos());
-            if (iv == -1)
-                continue;
-            catalogo.mostrarComentariosDeVideo(iv);
-        }
-        else if (opcion == 6)
-        {
-
-            catalogo.mostrarUsuarios();
-            int iu = catalogo.pedirIndice("Indice del usuario: ", catalogo.totalUsuarios());
-            if (iu == -1)
-                continue;
-
-            catalogo.mostrarCanales();
-            int ic = catalogo.pedirIndice("Indice del canal: ", catalogo.totalCanales());
-            if (ic == -1)
-                continue;
-
-            catalogo.suscribirUsuarioACanal(iu, ic);
-        }
-        else if (opcion == 7)
-        {
-
-            catalogo.mostrarVideos();
-            int iv1 = catalogo.pedirIndice("Indice del primer video: ", catalogo.totalVideos());
-            if (iv1 == -1)
-                continue;
-            int iv2 = catalogo.pedirIndice("Indice del segundo video: ", catalogo.totalVideos());
-            if (iv2 == -1)
-                continue;
-
-            catalogo.compararPopularidad(iv1, iv2);
-        }
-        else if (opcion == 8)
-        {
-
-            catalogo.mostrarCanales();
-            int ic = catalogo.pedirIndice("Indice del canal: ", catalogo.totalCanales());
-            if (ic == -1)
-                continue;
-            catalogo.getCanal(ic)->mostrarVideos();
-        }
-        else if (opcion == 9)
-        {
-
-            catalogo.mostrarTodo();
-        }
-        else if (opcion == 0)
-        {
-            cout << "Hasta luego!" << endl;
-        }
-        else
-        {
-            cout << "Opcion no valida. Intenta de nuevo." << endl;
+            cout << "Error: " << e.what() << endl;
         }
     }
 

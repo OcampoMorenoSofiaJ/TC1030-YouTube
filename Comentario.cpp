@@ -22,3 +22,7 @@ void Comentario::mostrarComentario() {
 void Comentario::darLike() {
     likescom++;
 }
+
+void Comentario::recibirLike() {
+    darLike();
+}

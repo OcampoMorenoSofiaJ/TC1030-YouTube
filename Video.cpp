@@ -16,8 +16,23 @@ void Video::agregarComentario(const Comentario& comentario) {
     comentarios.push_back(comentario);
 }
 
+vector<Comentario>& Video::getComentarios() {
+    return comentarios;
+}
+
 const vector<Comentario>& Video::getComentarios() const {
     return comentarios;
+}
+
+void Video::recibirLike() {
+    likes++;
+}
+
+bool Video::darLikeComentario(int indiceComentario) {
+    if (indiceComentario < 0 || indiceComentario >= (int)comentarios.size())
+        return false;
+    comentarios[indiceComentario].darLike();
+    return true;
 }
 
 void operator>(Video& v1, Video& v2) {

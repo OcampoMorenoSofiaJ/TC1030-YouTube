@@ -143,7 +143,7 @@ void Catalogo::agregarComentarioAVideo(int indiceVideo, int indiceUsuario, const
         cout << "Algo salió mal al agregar el comentario." << endl;
         return;
     }
-    u->comentar(v, texto, fecha);
+    u->comentar(v, nextComentarioId, texto, fecha);
     cout << "Comentario agregado correctamente." << endl;
     nextComentarioId++;
 }
@@ -165,10 +165,39 @@ void Catalogo::mostrarComentariosDeVideo(int indiceVideo) const
     }
 
     cout << "\n--- Comentarios ---" << endl;
-    for (const Comentario &c : coms)
+    for (int i = 0; i < (int)coms.size(); i++)
     {
-        const_cast<Comentario &>(c).mostrarComentario();
+        cout << "[" << i << "] ";
+        const_cast<Comentario &>(coms[i]).mostrarComentario();
         cout << endl;
+    }
+}
+
+void Catalogo::darLikeComentarioAVideo(int indiceVideo, int indiceUsuario, int indiceComentario)
+{
+    Video *v = getVideo(indiceVideo);
+    Usuario *u = getUsuario(indiceUsuario);
+    if (!v || !u)
+    {
+        cout << "Algo salió mal al dar like al comentario." << endl;
+        return;
+    }
+
+    vector<Comentario> &coms = v->getComentarios();
+    if (indiceComentario < 0 || indiceComentario >= (int)coms.size())
+    {
+        cout << "Indice de comentario invalido." << endl;
+        return;
+    }
+
+    Likeable *likeableComentario = &coms[indiceComentario];
+    if (u->darLike(likeableComentario))
+    {
+        cout << "Like agregado al comentario." << endl;
+    }
+    else
+    {
+        cout << "No se pudo agregar like al comentario." << endl;
     }
 }
 
@@ -229,7 +258,8 @@ void Catalogo::mostrarMenu()
     cout << "|  6. Suscribirse a un canal           |" << endl;
     cout << "|  7. Comparar popularidad de videos   |" << endl;
     cout << "|  8. Ver videos de un canal           |" << endl;
-    cout << "|  9. Mostrar todo el catalogo         |" << endl;
+    cout << "|  9. Dar like a un comentario de un video |" << endl;
+    cout << "| 10. Mostrar todo el catalogo         |" << endl;
     cout << "|  0. Salir                            |" << endl;
     cout << "|======================================|" << endl;
     cout << "Opcion: ";

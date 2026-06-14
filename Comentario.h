@@ -4,7 +4,9 @@
 #include <string>
 using namespace std;
 
-class Comentario {
+#include "Likeable.h"
+
+class Comentario : public Likeable {
 private:
     int idComentario;
     int likescom;
@@ -17,6 +19,7 @@ public:
     Comentario(int _idComentario, string _texto, string _fecha, string _autor);
     void mostrarComentario();
     void darLike();
+    void recibirLike() override;
 };
 
 #endif

@@ -23,8 +23,8 @@ public:
     Usuario(int _idUsuario, string _nombre, string _email);
     // Es correcto poner video aquí?
     void verVideo(Video* video);
-    void comentar(Video* video, const string& texto, const string& fecha);
-    void darLike(Video* video);
+    void comentar(Video* video, int idComentario, const string& texto, const string& fecha);
+    bool darLike(Likeable* likeable);
     void suscribirse(Canal* canal);
 };
 

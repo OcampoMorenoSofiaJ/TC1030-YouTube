@@ -48,6 +48,7 @@ public:
 
     void agregarComentarioAVideo(int indiceVideo, int indiceUsuario, const string &texto, const string &fecha);
     void mostrarComentariosDeVideo(int indiceVideo) const;
+    void darLikeComentarioAVideo(int indiceVideo, int indiceUsuario, int indiceComentario);
     void suscribirUsuarioACanal(int indiceUsuario, int indiceCanal);
     void compararPopularidad(int indiceV1, int indiceV2) const;
 

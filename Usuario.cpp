@@ -15,15 +15,23 @@ void Usuario::verVideo(Video* video) {
     }
 }
 
-void Usuario::comentar(Video* video, const string& texto, const string& fecha){
+void Usuario::comentar(Video* video, int idComentario, const string& texto, const string& fecha){
     if (!video) return;
-    Comentario comentario(0, texto, fecha, nombre);
+    Comentario comentario(idComentario, texto, fecha, nombre);
     video->agregarComentario(comentario);
 }
 
-void Usuario::darLike(Video* video){
-    if (!video) return;
-    // Lista de Videos a los que se les ha dado like?
+bool Usuario::darLike(Likeable* likeable){
+    if (!likeable) return false;
+    if (dynamic_cast<Video*>(likeable)) {
+        likeable->recibirLike();
+        return true;
+    }
+    if (dynamic_cast<Comentario*>(likeable)) {
+        likeable->recibirLike();
+        return true;
+    }
+    return false;
 }
 
 void Usuario::suscribirse(Canal* canal){
