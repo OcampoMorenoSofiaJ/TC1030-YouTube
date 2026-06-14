@@ -4,6 +4,7 @@
 class Likeable {
 public:
     virtual void recibirLike() = 0;
+    virtual ~Likeable() {}
 };
 
 #endif
