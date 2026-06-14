@@ -17,7 +17,7 @@ void Usuario::verVideo(Video* video) {
 
 void Usuario::comentar(Video* video, const string& texto, const string& fecha){
     if (!video) return;
-    Comentario comentario(0, 0, texto, fecha, nombre);
+    Comentario comentario(0, texto, fecha, nombre);
     video->agregarComentario(comentario);
 }
 

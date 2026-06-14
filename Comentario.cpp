@@ -3,9 +3,9 @@
 using namespace std;
 #include <iostream>
 
-Comentario::Comentario(int _idComentario, int _likes, string _texto, string _fecha, string _autor) {
+Comentario::Comentario(int _idComentario, string _texto, string _fecha, string _autor) {
     idComentario = _idComentario;
-    likescom = _likes;
+    likescom = 0;
     texto = _texto;
     fecha = _fecha;
     autor = _autor;

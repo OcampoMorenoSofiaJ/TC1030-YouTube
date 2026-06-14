@@ -14,7 +14,7 @@ private:
     string autor;
 
 public:
-    Comentario(int _idComentario, int _likes, string _texto, string _fecha, string _autor);
+    Comentario(int _idComentario, string _texto, string _fecha, string _autor);
     void mostrarComentario();
     void darLike();
 };

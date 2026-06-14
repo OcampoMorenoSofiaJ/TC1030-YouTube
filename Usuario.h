@@ -7,7 +7,8 @@ using namespace std;
 
 #include "Video.h"
 #include "Comentario.h"
-#include "Canal.h"
+
+class Canal;
 
 class Usuario {
 private:

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/xatz/Documents/POO2/Youtube",
+      "program": "/Users/xatz/Documents/POO2/Youtube/build/Debug/outDebug"
+    }
+  ]
+}
