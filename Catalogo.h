@@ -49,6 +49,10 @@ public:
     void mostrarComentariosDeVideo(int indiceVideo) const;
     void suscribirUsuarioACanal(int indiceUsuario, int indiceCanal);
     void compararPopularidad(int indiceV1, int indiceV2) const;
+
+    void limpiarBuffer();
+    int pedirIndice(const string &prompt, int maxExclusivo);
+    void mostrarMenu();
 };
 
 #endif
